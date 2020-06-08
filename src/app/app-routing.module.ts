@@ -17,7 +17,15 @@ const routes: Routes = [
       path: '',
       loadChildren: './paginas/dashboard-user/dashboard-user.module#DashboardUserModule'
     }]
+  },
+  {
+    path: 'pagos', 
+    children: [{
+      path: '',
+      loadChildren: './paginas/publico/publico.module#PublicoModule'
+    }]
   }
+
   /*{
     path: 'publico',
     loadChildren: () => import('./paginas/publico/publico.module').then( m => m.PublicoModule)

@@ -10,18 +10,6 @@
       "name": "usuarios",
       "redirectTo": "./usuarios",
       "submenu":[]
-    },
-    {
-      "icon": "assignment_turned_in",
-      "name": "mensajes",
-      "redirectTo": "./mensajes",
-      "submenu":[]
-    },
-    {
-      "icon": "assignment_turned_in",
-      "name": "Whatsapp",
-      "redirectTo": "./whatsapp",
-      "submenu":[]
     }
   ]
   
