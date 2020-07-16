@@ -1,15 +1,162 @@
 [
     {
       "icon": "dashboard",
-      "name": "Inicio",
+      "name": "Dashboard",
       "redirectTo": "./home",
+      "disabled": true,
       "submenu":[]
     },
     {
       "icon": "assignment",
-      "name": "usuarios",
+      "name": "Suscripciones",
+      "disabled": false,
       "redirectTo": "./usuarios",
+      "submenu":[
+        {
+          "icon": "assignment",
+          "name": "Cliente",
+          "redirectTo": "./usuarios"
+        },
+        {
+          "icon": "assignment",
+          "name": "listar Suscripciones",
+          "redirectTo": "./usuarios"
+        },
+        {
+          "icon": "assignment",
+          "name": "Listar Planes",
+          "redirectTo": "./usuarios"
+        }
+      ]
+    },
+    {
+      "icon": "assignment",
+      "name": "Cobros",
+      "disabled": true,
+      "redirectTo": "./cobros",
       "submenu":[]
+    },
+    {
+      "icon": "assignment",
+      "name": "Recaudo",
+      "disabled": true,
+      "redirectTo": "./usuarios",
+      "submenu":[
+        {
+          "icon": "assignment",
+          "name": "Proyectos",
+          "redirectTo": "./recaudo/proyectos"
+        }
+      ]
+    },
+    {
+      "icon": "assignment",
+      "name": "Reportes",
+      "disabled": true,
+      "redirectTo": "./usuarios",
+      "submenu":[
+        {
+          "icon": "assignment",
+          "name": "Transacciones",
+          "redirectTo": "./reportes/transacciones"
+        },
+        {
+          "icon": "assignment",
+          "name": "Movimientos",
+          "redirectTo": "./reportes/movimiento"
+        },
+        {
+          "icon": "assignment",
+          "name": "Certificado de retención",
+          "redirectTo": "./reportes/certificadoretencion"
+        },
+        {
+          "icon": "assignment",
+          "name": "Asobancaria",
+          "redirectTo": "./reportes/asobancaria"
+        },
+        {
+          "icon": "assignment",
+          "name": "Facturas",
+          "redirectTo": "./reportes/facturas"
+        }
+      ]
+    },
+    {
+      "icon": "assignment",
+      "name": "Saldos y retiros",
+      "disabled": true,
+      "redirectTo": "./saldoretiro",
+      "submenu":[]
+    },
+    {
+      "icon": "assignment",
+      "name": "Configuraciones",
+      "disabled": true,
+      "redirectTo": "./usuarios",
+      "submenu":[
+        {
+          "icon": "assignment",
+          "name": "Propiedades de mi cuenta",
+          "redirectTo": "./configuraciones/propiedades"
+        },
+        {
+          "icon": "assignment",
+          "name": "Medios de pago",
+          "redirectTo": "./configuraciones/medios"
+        }
+      ]
+    },
+    {
+      "icon": "assignment",
+      "name": "Integraciones",
+      "disabled": false,
+      "redirectTo": "./usuarios",
+      "submenu":[
+        {
+          "icon": "assignment",
+          "name": "Propiedades de mi sitio",
+          "redirectTo": "./usuarios"
+        },
+        {
+          "icon": "assignment",
+          "name": "Monedas",
+          "redirectTo": "./usuarios"
+        },
+        {
+          "icon": "assignment",
+          "name": "Llaves API",
+          "redirectTo": "./usuarios"
+        },
+        {
+          "icon": "assignment",
+          "name": "Actualizaciones",
+          "redirectTo": "./usuarios"
+        }
+      ]
+    },
+    {
+      "icon": "assignment",
+      "name": "Admin",
+      "disabled": false,
+      "redirectTo": "./usuarios",
+      "submenu":[
+        {
+          "icon": "assignment",
+          "name": "Administradores",
+          "redirectTo": "./usuarios"
+        },
+        {
+          "icon": "assignment",
+          "name": "Roles de administradores",
+          "redirectTo": "./usuarios"
+        },
+        {
+          "icon": "assignment",
+          "name": "Seguridad",
+          "redirectTo": "./usuarios"
+        }
+      ]
     }
   ]
   

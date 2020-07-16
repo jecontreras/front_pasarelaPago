@@ -11,6 +11,7 @@ export class IdiomasService {
 
   procesoIdomaEs(){
     this.idiomaEs = {
+      // del form de pago publico
       tabs: {
         tabs1: "Seleccione el medio de pago",
         tabs2: "Complete la información",
@@ -63,7 +64,25 @@ export class IdiomasService {
         ref_pago: "Ref Pago",
         recibo: "Recibo",
         btnFinal: "Ir A la Web Del Comercio"
-      }
+      },
+      ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      dashboard:{
+        tipoCuenta: "Tipo de cuenta",
+        herramienCobro: "Herramientas de cobro",
+        email: "Enviar un email de cobro",
+        link: "Crear y compartir un link de cobro",
+        bottonPago: "Generar e insertar un botón  de cobro",
+        saldoDisponible: "Saldo disponible",
+        TransaccionAprobadas: "Transacciones aprobadas",
+        TransaccionPendiente: "Transacciones pendientes",
+        verDetalles: "Ver detalle",
+        ultimasTransacciones: "Últimas transacciones"
+      },
+      tables:{
+        ultimasTransaccion:{
+          header: ['Ref.Pago', 'Ref.Cliente', 'Descripción', 'Medio de Pago', 'Valor', 'Moneda', 'Estado', 'Test']
+        }
+      },
     };
   }
 }

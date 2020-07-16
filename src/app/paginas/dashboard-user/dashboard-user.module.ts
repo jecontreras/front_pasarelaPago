@@ -26,14 +26,25 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { MyOwnCustomMaterialModule } from 'src/app/app.material.module';
 import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
 import { FormWhatsappComponent } from './forms/form-whatsapp/form-whatsapp.component';
-
+import { CobrosComponent } from './components/cobros/cobros.component';
+import { ProyectosComponent } from './components/recaudo/proyectos/proyectos.component';
+import { TransaccionesComponent } from './components/reportes/transacciones/transacciones.component';
+import { MovimientosComponent } from './components/reportes/movimientos/movimientos.component';
+import { CertificadoRetencionComponent } from './components/reportes/certificado-retencion/certificado-retencion.component';
+import { AsobancariaComponent } from './components/reportes/asobancaria/asobancaria.component';
+import { FacturasComponent } from './components/reportes/facturas/facturas.component';
+import { SaldosRetirosComponent } from './components/saldos-retiros/saldos-retiros.component';
+import { PropiedadesCuentaComponent } from './components/configuraciones/propiedades-cuenta/propiedades-cuenta.component';
+import { MedioPagoComponent } from './components/configuraciones/medio-pago/medio-pago.component';
+import { FormHerramientacobrosComponent } from './forms/form-herramientacobros/form-herramientacobros.component';
+import { NgxCurrencyModule } from "ngx-currency";
 
 
 @NgModule({
   entryComponents:[
     FormUsuarioComponent
   ],
-  declarations: [DashboardComponent, MainComponent, ContenidoComponent, MenuComponent, HeaderComponent, SettingsComponent, FormContratoComponent, UsuariosComponent, MensajesComponent, FormUsuarioComponent, FormMensajesComponent, FormMandadosComponent, PerfilComponent, WhatsappComponent, FormWhatsappComponent],
+  declarations: [DashboardComponent, MainComponent, ContenidoComponent, MenuComponent, HeaderComponent, SettingsComponent, FormContratoComponent, UsuariosComponent, MensajesComponent, FormUsuarioComponent, FormMensajesComponent, FormMandadosComponent, PerfilComponent, WhatsappComponent, FormWhatsappComponent, CobrosComponent, ProyectosComponent, TransaccionesComponent, MovimientosComponent, CertificadoRetencionComponent, AsobancariaComponent, FacturasComponent, SaldosRetirosComponent, PropiedadesCuentaComponent, MedioPagoComponent, FormHerramientacobrosComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -43,7 +54,8 @@ import { FormWhatsappComponent } from './forms/form-whatsapp/form-whatsapp.compo
     NgxSpinnerModule,
     InfiniteScrollModule,
     AngularEditorModule,
-    MyOwnCustomMaterialModule
+    MyOwnCustomMaterialModule,
+    NgxCurrencyModule
   ],
   exports: [
     DashboardComponent

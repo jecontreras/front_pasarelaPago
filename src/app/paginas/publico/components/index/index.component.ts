@@ -103,6 +103,17 @@ export class IndexComponent implements OnInit {
       },
     ]
   }
+  
+  validandoTarjeta(){
+    console.log(this.data.numeroTarjeta);
+    let visa:any = this.data.numeroTarjeta;
+    let mastercard = this.data.numeroTarjeta;
+    if (!visa.match(/^4\d{3}-?\d{4}-?\d{4}-?\d{4}$/)) console.log("No es un número de Visa correcto");
+    else console.log("Es correcto visa");
+      
+    if (!mastercard.match(/^5[1-5]\d{2}-?\d{4}-?\d{4}-?\d{4}$/)) console.log("No es un número de mastercard correcto")
+    else console.log("Es correcto mastercard")
+  }
 
   selectMedio( item:any ){
     if( !this.data.email ) return this._tools.presentToast("Primero debes instroducir un emails");
@@ -142,7 +153,7 @@ export class IndexComponent implements OnInit {
 
   submitPago(){
     //this.btnDisableSubmit = true;
-
+    this.disabled.vistas2 = false;
     this.vista = "finix";
   }
 

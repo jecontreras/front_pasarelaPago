@@ -30,8 +30,12 @@ export class MenuComponent implements OnInit {
   cargarMenu(){
     this._menu.getMenuOpts().subscribe(rta=>{
       this.listMenu = rta;
-      console.log(this.listMenu)
+      this.listMenu = this.listMenu.filter((row:any)=> row.disabled == true );
     })
+  }
+  ActivarMenu( item:any ){
+    //for( let row of this.listMenu ) row.check = false;
+    item.check = !item.check;
   }
   loguot(){
     let accion = new UserAction( this.dataUser, 'drop');

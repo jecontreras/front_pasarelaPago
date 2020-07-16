@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PerfilComponent } from './perfil.component';
+import { SaldosRetirosComponent } from './saldos-retiros.component';
 
-describe('PerfilComponent', () => {
-  let component: PerfilComponent;
-  let fixture: ComponentFixture<PerfilComponent>;
+describe('SaldosRetirosComponent', () => {
+  let component: SaldosRetirosComponent;
+  let fixture: ComponentFixture<SaldosRetirosComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PerfilComponent ]
+      declarations: [ SaldosRetirosComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PerfilComponent);
+    fixture = TestBed.createComponent(SaldosRetirosComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

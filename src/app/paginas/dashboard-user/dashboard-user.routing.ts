@@ -2,15 +2,19 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MainComponent } from './main/main.component';
 import { ContenidoComponent } from './components/contenido/contenido.component';
-import { FormContratoComponent } from './forms/form-contrato/form-contrato.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { UsuariosComponent } from './components/usuarios/usuarios.component';
-import { MensajesComponent } from './components/mensajes/mensajes.component';
-import { FormUsuarioComponent } from './forms/form-usuario/form-usuario.component';
-import { FormMensajesComponent } from './forms/form-mensajes/form-mensajes.component';
 import { PerfilComponent } from './relleno/perfil/perfil.component';
-import { WhatsappComponent } from './components/whatsapp/whatsapp.component';
-import { FormWhatsappComponent } from './forms/form-whatsapp/form-whatsapp.component';
+import { CobrosComponent } from './components/cobros/cobros.component';
+import { ProyectosComponent } from './components/recaudo/proyectos/proyectos.component';
+import { TransaccionesComponent } from './components/reportes/transacciones/transacciones.component';
+import { CertificadoRetencionComponent } from './components/reportes/certificado-retencion/certificado-retencion.component';
+import { AsobancariaComponent } from './components/reportes/asobancaria/asobancaria.component';
+import { FacturasComponent } from './components/reportes/facturas/facturas.component';
+import { SaldosRetirosComponent } from './components/saldos-retiros/saldos-retiros.component';
+import { PropiedadesCuentaComponent } from './components/configuraciones/propiedades-cuenta/propiedades-cuenta.component';
+import { MedioPagoComponent } from './components/configuraciones/medio-pago/medio-pago.component';
+import { MovimientosComponent } from './components/reportes/movimientos/movimientos.component';
+import { FormHerramientacobrosComponent } from './forms/form-herramientacobros/form-herramientacobros.component';
 
 const routes: Routes = [
     {
@@ -24,52 +28,56 @@ const routes: Routes = [
             component: ContenidoComponent
           },
           {
-            path: 'contratoform',
-            component: FormContratoComponent
+            path: 'cobros',
+            component: CobrosComponent
           },
           {
-            path: 'contratoform/:id',
-            component: FormContratoComponent
+            path: 'recaudo/proyectos',
+            component: ProyectosComponent
           },
           {
-            path: 'usuarios',
-            component: UsuariosComponent
+            path: 'reportes/transacciones',
+            component: TransaccionesComponent
           },
           {
-            path: 'usuariosform',
-            component: FormUsuarioComponent
+            path: 'reportes/movimiento',
+            component: MovimientosComponent
           },
           {
-            path: 'usuariosform/:id',
-            component: FormUsuarioComponent
+            path: 'reportes/certificadoretencion',
+            component: CertificadoRetencionComponent
           },
           {
-            path: 'mensajes',
-            component: MensajesComponent
+            path: 'reportes/asobancaria',
+            component: AsobancariaComponent
           },
           {
-            path: 'mensajesform',
-            component: FormMensajesComponent
+            path: 'reportes/facturas',
+            component: FacturasComponent
           },
           {
-            path: 'mensajesform/:id',
-            component: FormMensajesComponent
+            path: 'saldoretiro',
+            component: SaldosRetirosComponent
           },
           {
-            path: 'whatsapp',
-            component: WhatsappComponent
+            path: 'configuraciones/propiedades',
+            component: PropiedadesCuentaComponent
           },
           {
-            path: 'whatsappform',
-            component: FormWhatsappComponent
-          },
-          {
-            path: 'whatsappform/:id',
-            component: FormWhatsappComponent
+            path: 'configuraciones/medios',
+            component: MedioPagoComponent
           },
           {
             path: 'perfil',
             component: PerfilComponent
+          },
+          {
+            path: "formherramientacobros/:opt",
+            component: FormHerramientacobrosComponent
+          },
+          {
+            path: "formherramientacobros/:id",
+            component: FormHerramientacobrosComponent
           },
           {path: '**', redirectTo: 'home', pathMatch: 'full'}
         ]

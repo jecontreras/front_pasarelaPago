@@ -8,6 +8,7 @@ import Swal from 'sweetalert2'
 export class ToolsService {
   
   loading:any;
+  formatoMoneda:any = { prefix: 'COP$ ',align: 'left', thousands: '.', decimal: ',', precision: 0 };
 
   constructor(
     private snackBar: MatSnackBar
@@ -86,6 +87,10 @@ export class ToolsService {
         console.log('I was closed by the timer')
       }
     })
+  }
+
+  codigo(){
+    return (Date.now().toString(20).substr(2, 3) + Math.random().toString(20).substr(2, 3)).toUpperCase();
   }
   
 
