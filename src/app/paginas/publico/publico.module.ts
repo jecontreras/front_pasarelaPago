@@ -5,6 +5,7 @@ import { PublicoRoutingModule } from './publico.routing';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IndexComponent } from './components/index/index.component';
 import { MyOwnCustomMaterialModule } from 'src/app/app.material.module';
+import { NgxCurrencyModule } from 'ngx-currency';
 
 
 
@@ -18,7 +19,8 @@ import { MyOwnCustomMaterialModule } from 'src/app/app.material.module';
     ReactiveFormsModule,
     FormsModule,
     PublicoRoutingModule,
-    MyOwnCustomMaterialModule
+    MyOwnCustomMaterialModule,
+    NgxCurrencyModule
   ],
   bootstrap: [ PublicoComponent ]
 })

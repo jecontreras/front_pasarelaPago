@@ -1,0 +1,377 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <style>
+        * {
+            font-size: 13px !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container content">
+        <div class="d-flex bd-highlight">
+            <div class="p-2 flex-grow-1 bd-highlight">
+                <img class="logo" [src]="paramsInforPago.logoComercio || './assets/imagenes/logo.png'">
+            </div>
+            <div class="p-2 bd-highlight">
+                Pago seguro PagosYa
+                <br>
+                <mat-form-field>
+                    <mat-label>Idioma</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let food of foods" [value]="food.value">
+                            {{ food.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <nav mat-tab-nav-bar mat-stretch-tabs [backgroundColor]="background"
+            class="example-stretched-tabs mat-elevation-z4">
+            <a mat-tab-link [disabled]="disabled.vistas1" (click)="volverVista('inicio')">{{ idioma.tabs.tabs1 }}</a>
+            <a mat-tab-link [disabled]="disabled.vistas2" (click)="volverVista('detalles')">{{ idioma.tabs.tabs2 }}</a>
+            <a mat-tab-link [disabled]="disabled.vistas3" (click)="volverVista('finix')">{{ idioma.tabs.tabs3 }}</a>
+        </nav>
+        <!-- <mat-tab-group mat-stretch-tabs class="example-stretched-tabs mat-elevation-z4">
+            <mat-tab label="{{ idioma.tabs.tabs1}}"></mat-tab>
+            <mat-tab label="{{ idioma.tabs.tabs2}}"></mat-tab>
+            <mat-tab label="{{ idioma.tabs.tabs3}}"></mat-tab>
+        </mat-tab-group> -->
+        <div class="container content">
+            <br><br>
+            <div class="row">
+                <div class="col-12 col-sm-8 col-md-8 col-lg-8 border mat-elevation-z4 p-3">
+                    <div class="row" *ngIf="vista == 'inicio'">
+                        <div class="col-12">
+                            <label>
+                                <i class="fa fa-share" aria-hidden="true"></i>
+                                <h4>{{ idioma.form.emails }}</h4>
+                            </label>
+                            <mat-form-field class="example-full-width">
+                                <input matInput type="email" [(ngModel)]="data.email" required>
+                                <button mat-button [disabled]="!data.email" matSuffix mat-raised-button color="primary"
+                                    aria-label="Clear">
+                                    {{ idioma.form.buttonContinue }}
+                                </button>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-12">
+                            <label>
+                                <i class="fa fa-share" aria-hidden="true"></i>
+                                <h4>{{ idioma.form.medioPago }}</h4>
+                            </label>
+                            <mat-list role="list">
+                                <mat-list-item role="listitem" *ngFor="let item of listMedios" class="mouse"
+                                    [ngClass]="{checkts: item.check == true}" (click)="selectMedio( item )">
+                                    <img mat-list-icon [src]="item.foto" class="logoMedio">
+                                    <label class="mouse">
+                                        <span>{{ item.medio }}</span><br>
+                                        <span>{{ item.descripcion }}</span>
+                                    </label>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="vista == 'detalles'">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-around">
+                                <div>
+                                    <h5>{{ listSeleccionPago.titulo  }}</h5>
+                                </div>
+                                <div></div>
+                                <div>
+                                    <button mat-button color="primary" (click)="volverVista('inicio')"><i
+                                            class="fa fa-circle-o-notch"
+                                            aria-hidden="true"></i>{{ idioma.form.cambiar }}</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 container">
+                            <div class="row">
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.nombreTarjeta }}</mat-label>
+                                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                                        <input type="text" matInput [(ngModel)]="data.nombreTitular">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12">
+                                    <label>
+                                        <img class="logoTarjetas" src="./assets/imagenes/mastercard.png" alt="">
+                                        <img class="logoTarjetas" src="./assets/imagenes/diners2.jpg" alt="">
+                                        <img class="logoTarjetas" src="./assets/imagenes/american.png" alt="">
+                                        <img class="logoTarjetas" src="./assets/imagenes/visa.png" alt="">
+                                    </label>
+                                </div>
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.numeroTarjeta }}</mat-label>
+                                        <!-- <i class="fa fa-credit-card" aria-hidden="true"></i> -->
+                                        <input type="text" matInput (keyup)="validandoTarjeta()" [(ngModel)]="data.numeroTarjeta">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.fechaVencimiento }}</mat-label>
+                                        <!-- <i class="fa fa-calendar-o" aria-hidden="true"></i> -->
+                                        <input type="month" matInput [(ngModel)]="data.fechaVencimiento">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.cvc }}</mat-label>
+                                        <!-- <i class="fa fa-calendar-o" aria-hidden="true"></i> -->
+                                        <input type="number" matInput [(ngModel)]="data.cvc">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.cuota }}</mat-label>
+                                        <mat-select [(ngModel)]="data.cuotas">
+                                            <mat-option *ngFor="let cuota of listCuotas" [value]="cuota">
+                                                {{ cuota }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>Tipo Doc</mat-label>
+                                        <mat-select [(ngModel)]="data.tipoCC">
+                                            <mat-option *ngFor="let tipo of listTipoCc" [value]="tipo">
+                                                {{ tipo }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-8">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.documento }}</mat-label>
+                                        <input type="number" matInput [(ngModel)]="data.documento">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.emails2 }}</mat-label>
+                                        <input type="text" matInput [(ngModel)]="data.email">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-4">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.indicativo }}</mat-label>
+                                        <mat-select [(ngModel)]="data.indicativo">
+                                            <mat-option *ngFor="let indi of listIndicativos" [value]="indi.phone_code">
+                                                +{{ indi.phone_code }} {{ indi.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-8">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.numero }}</mat-label>
+                                        <input type="number" matInput [(ngModel)]="data.celular">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.pais }}</mat-label>
+                                        <mat-select [(ngModel)]="data.pais">
+                                            <mat-option *ngFor="let indi of listIndicativos" [value]="indi.nombre">
+                                                {{ indi.nombre }}
+                                            </mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-6">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.ciudad }}</mat-label>
+                                        <input type="text" matInput [(ngModel)]="data.ciudad"
+                                            placeholder="{{ idioma.form.ciudad }}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12">
+                                    <mat-form-field class="example-full-width">
+                                        <mat-label>{{ idioma.form.direccion }}</mat-label>
+                                        <input type="text" matInput [(ngModel)]="data.direccion"
+                                            placeholder="{{ idioma.form.direccion }}">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-12">
+                                    <mat-checkbox>{{ idioma.form.guardarDatos }}</mat-checkbox>
+                                </div>
+                                <div class="col-12">
+                                    <mat-checkbox>{{ idioma.form.terminos }}</mat-checkbox>
+                                </div>
+                                <div class="col-12">
+                                    <button mat-raised-button color="primary" [disabled]="btnDisableSubmit"
+                                        (click)="submitPago()">CONTINUAR</button>
+                                </div>
+                                <br><br>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngIf="vista == 'finix'">
+                        <div class="col-12 container">
+                            <div class="d-flex justify-content-center">
+                                <i class="fa fa-check-circle" aria-hidden="true"></i>
+                                <h4>{{ idioma.finix.titulo }}</h4> &nbsp;&nbsp; <h4>{{ data.total }}</h4>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <p>{{ data.nombreTitular }} con Nit ${{ data.documento }}</p>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <h5>{{ data.ref }}</h5>
+                                </div>
+                                <div></div>
+                                <div>
+                                    <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div> {{ idioma.finix.metodo }} </div>
+                                <div></div>
+                                <div>{{ data.metodo }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div> {{ idioma.finix.fecha }} </div>
+                                <div></div>
+                                <div>{{ data.fecha }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div> {{ idioma.finix.estado }} </div>
+                                <div></div>
+                                <div>{{ data.estado }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div> {{ idioma.finix.ref_pago }} </div>
+                                <div></div>
+                                <div>{{ data.ref_pagp }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div> {{ idioma.finix.recibo }} </div>
+                                <div></div>
+                                <div>{{ data.recibo }}</div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-center">
+                                <button mat-raised-button color="primary">{{ idioma.finix.btnFinal }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4 border mat-elevation-z4 p-3">
+                    <div class="container">
+                        <div class="row">
+                            <!-- primer texto -->
+                            <div class="col-12">
+                                <h4>{{ idioma.components.titulo }}</h4>
+                            </div>
+                            <div class="col-12">
+                                <p>{{ paramsInforPago.descripcion }}</p>
+                                <br><br>
+                            </div>
+                            <div class="col-12 container">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>{{ idioma.components.subtotal }}</h5>
+                                    </div>
+                                    <div>
+                                        {{ paramsInforPago.subtotal }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>{{ idioma.components.taxes }}</h5>
+                                    </div>
+                                    <div>
+                                        {{ paramsInforPago.taxes }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>{{ idioma.components.total }}</h5>
+                                    </div>
+                                    <div>
+                                        {{ paramsInforPago.total }}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- segundo texto -->
+                            <div class="col-12">
+                                <br><br>
+                                <h4>{{ idioma.components.titulo2 }}</h4>
+                            </div>
+                            <div class="col-12 container">
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>{{ idioma.components.comercio }}</h5>
+                                    </div>
+                                    <div>
+                                        {{ paramsInforPago.comercio }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>{{ idioma.components.llamenos }}</h5>
+                                    </div>
+                                    <div>
+                                        {{ paramsInforPago.llamenos }}
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">
+                                        <h5>{{ idioma.components.escribanos }}</h5>
+                                    </div>
+                                    <div>
+                                        {{ paramsInforPago.escribanos }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                {{ paramsInforPago.urlRespuesta }}
+                            </div>
+                            <div class="col-12">
+                                <br><br>
+                                <h4>{{ idioma.components.titulo3 }}</h4>
+                            </div>
+                            <div class="col-12">
+                                <img src="./assets/imagenes/securetrustlogo.jpg" class="logoSecuritru">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

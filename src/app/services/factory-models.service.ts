@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { USER } from '../interfaces/user';
 import { Store } from '@ngrx/store';
+import { IP } from '../interfaces/interfasapp';
 
 declare var io: any;
 const headers = new HttpHeaders({
@@ -58,6 +59,10 @@ export class FactoryModelsService {
     }
     query = `${query}`;
     return this.ejecutarQuery<Interfas>(query, data, METODO);
+  }
+
+  miIp(){
+    return this.ejecutarQuery<IP>(`https://api.ipify.org/?format=jsonp&callback=get_ip`, {}, 'get');
   }
 
   async createsocket(modelo: string, query: any) {

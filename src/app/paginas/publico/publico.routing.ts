@@ -7,15 +7,10 @@ import { IndexComponent } from './components/index/index.component';
 const routes: Routes = [
       {
         path: '',
-        component: PublicoComponent
+        component: IndexComponent
       },
       {
-        path: '**',
-        redirectTo: 'index',
-        pathMatch: 'full'
-      },
-      {
-        path: "index",
+        path: "index/:idComercio/:descripcion/:total/:impuestos",
         component: IndexComponent
       }
       /*{

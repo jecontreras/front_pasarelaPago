@@ -20,6 +20,15 @@ export interface APPINT {
     apoyo5: string;
     apoyo6: string;
 }
+
+export interface COBROAUTOMATICO {
+
+}
+
+export interface IP {
+
+}
+
 export interface LINKCOBRO{
 
 }
