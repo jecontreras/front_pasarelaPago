@@ -1,1 +1,60 @@
-<p>cobros works!</p>
+<div id="content-wrapper" class="contents">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-12">
+            <div id="content-header" class="clearfix">
+              <div class="pull-left">
+                <ol class="breadcrumb">
+                  <li><a [routerLink]="['/dashboard/home']">Home</a></li>
+                  <li class="active"><span>Cobros</span></li>
+                </ol>
+                <h1>Cobros</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            <input type="text" class="form-control" placeholder="Buscar..." (change)="buscar()" [disabled]="loader">
+          </div>
+          <div class="col-4">
+            <button class="btn btn-primary" type="button" title="Refresh" data-toggle="tooltip" data-placement="bottom"
+                (click)="buscar()" [disabled]="loader">
+                <i class="fa fa-refresh"></i>
+            </button>
+          </div>
+        </div>
+        <div class="col-12">
+            <table class="table" infiniteScroll
+             [infiniteScrollDistance]="3" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+                <thead>
+                    <tr>
+                      <th *ngFor="let headers of table.header" scope="col">{{ headers }}</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let row of table.dataRow">
+                      <th>{{ row.referenceCode }}</th>
+                      <td>{{ row.billingFirstName }}</td>
+                      <td>{{ row.descripcion | slice: 0: 100 }}</td>
+                      <td> <img style="height: 20px;" [src]="row.medioPago || './assets/imagenes/visa.png'"> </td>
+                      <td>{{ row.precio }}</td>
+                      <td>{{ row.moneda || 'Cop' }}</td>
+                      <td>{{ row.estado }}</td>
+                      <td>
+                          <span *ngIf="row.prueba">PRUEBA</span>
+                          <span *ngIf="!row.prueba">PRODUCCIÓN</span>
+                      </td>
+                    </tr>
+                  </tbody>
+            </table>
+        </div>
+        <div class="col">
+          <ngx-spinner bdOpacity=0.9 bdColor="" size="default" color="#581f87" type="ball-pulse-sync"
+            [fullScreen]="false">
+          </ngx-spinner>
+        </div>
+      </div>
+    </div>
+  </div>

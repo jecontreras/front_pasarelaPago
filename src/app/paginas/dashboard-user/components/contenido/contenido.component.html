@@ -98,14 +98,17 @@
                               </thead>
                               <tbody>
                                 <tr *ngFor="let row of table.dataRow">
-                                  <th>{{ row.refPago }}</th>
-                                  <td>{{ row.refCliente }}</td>
-                                  <td>{{ row.descripcion }}</td>
-                                  <td> <img style="    height: 20px;" [src]="row.medioPago"> </td>
-                                  <td>{{ row.valor }}</td>
-                                  <td>{{ row.moneda }}</td>
+                                  <th>{{ row.referenceCode }}</th>
+                                  <td>{{ row.billingFirstName }}</td>
+                                  <td>{{ row.descripcion | slice: 0: 100 }}</td>
+                                  <td> <img style="height: 20px;" [src]="row.medioPago || './assets/imagenes/visa.png'"> </td>
+                                  <td>{{ row.precio }}</td>
+                                  <td>{{ row.moneda || 'Cop' }}</td>
                                   <td>{{ row.estado }}</td>
-                                  <td>{{ row.test }}</td>
+                                  <td>
+                                      <span *ngIf="row.prueba">PRUEBA</span>
+                                      <span *ngIf="!row.prueba">PRODUCCIÓN</span>
+                                  </td>
                                 </tr>
                               </tbody>
                         </table>

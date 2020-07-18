@@ -137,6 +137,7 @@ export class IndexComponent implements OnInit {
     if( !validando ) { return false; }
     let result:any = await this.getComercio();
     if( !result ) { this.error="Comercio no registrado"; this.vista = "error"; return false; }
+    //console.log( result );
     this.paramsInforPago = {
       subtotal: Number( ( this.dataParmas.total || 0 )) - Number( ( this.dataParmas.impuestos || 0 )),
       taxes: this.dataParmas.impuestos,
@@ -146,7 +147,8 @@ export class IndexComponent implements OnInit {
       escribanos: result.email,
       urlRespuesta: result.empresa.urlPagina || "https://dilisaplive.000webhostapp.com/",
       descripcion: this.dataParmas.descripcion,
-      id: result.empresa.id
+      id: result.empresa.id,
+      prueba: result.empresa.prueba
     };
   }
 
@@ -217,8 +219,10 @@ export class IndexComponent implements OnInit {
         billingCity: this.data.billingCity,
         billingCelPhoneNumber: this.data.billingCelPhoneNumber,
         billingEmail: this.data.billingEmail,
-        referenceCode: this.data.referenceCode
+        referenceCode: this.data.referenceCode,
+        prueba: this.paramsInforPago.prueba
       };
+      //console.log( data );
       this._cobroAutomatico.saved( data ).subscribe(( res:any )=>{
         resolve( res );
       },error => resolve( false ) );

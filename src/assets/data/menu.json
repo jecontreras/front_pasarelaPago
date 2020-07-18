@@ -39,7 +39,7 @@
     {
       "icon": "assignment",
       "name": "Recaudo",
-      "disabled": true,
+      "disabled": false,
       "redirectTo": "./usuarios",
       "submenu":[
         {
@@ -52,7 +52,7 @@
     {
       "icon": "assignment",
       "name": "Reportes",
-      "disabled": true,
+      "disabled": false,
       "redirectTo": "./usuarios",
       "submenu":[
         {
