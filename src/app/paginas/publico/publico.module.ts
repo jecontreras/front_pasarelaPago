@@ -6,13 +6,17 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { IndexComponent } from './components/index/index.component';
 import { MyOwnCustomMaterialModule } from 'src/app/app.material.module';
 import { NgxCurrencyModule } from 'ngx-currency';
+import { LinkCobrosComponent } from './components/link-cobros/link-cobros.component';
+import { InformacionComponent } from './components/informacion/informacion.component';
 
 
 
 @NgModule({
   declarations: [
     PublicoComponent,
-    IndexComponent
+    IndexComponent,
+    LinkCobrosComponent,
+    InformacionComponent
   ],
   imports: [
     CommonModule,

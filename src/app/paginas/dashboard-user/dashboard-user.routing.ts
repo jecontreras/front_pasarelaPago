@@ -76,7 +76,7 @@ const routes: Routes = [
             component: FormHerramientacobrosComponent
           },
           {
-            path: "formherramientacobros/:id",
+            path: "formherramientacobros/:opt/:id",
             component: FormHerramientacobrosComponent
           },
           {path: '**', redirectTo: 'home', pathMatch: 'full'}

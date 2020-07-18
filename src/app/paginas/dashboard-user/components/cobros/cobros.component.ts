@@ -6,6 +6,8 @@ import { Store } from '@ngrx/store';
 import * as _ from 'lodash';
 import { ToolsService } from 'src/app/services/tools.service';
 import { IdiomasService } from 'src/app/services-components/idiomas.service';
+import { Router } from '@angular/router';
+import { LinkPagoService } from 'src/app/services-components/link-pago.service';
 
 @Component({
   selector: 'app-cobros',
@@ -27,23 +29,24 @@ export class CobrosComponent implements OnInit {
 
   constructor(
     private spinner: NgxSpinnerService,
-    private _cobroAutomatico: CobroAutomaticoService,
+    private _linkpago: LinkPagoService,
     private _store: Store<APPINT>,
     private _tools: ToolsService,
-    private _idiomas: IdiomasService
+    private _idiomas: IdiomasService,
+    private Router: Router
   ) { 
     this._store.subscribe((store: any) => {
       console.log(store);
       store = store.name;
       this.dataUser = store.user;
-    });
+    }); 
   }
 
   ngOnInit() {
-    console.log( this.idiomas );
+    // console.log( this.idiomas );
     this.idiomas = this._idiomas.idiomaEs;
-    this.table.header = this.idiomas.tables.ultimasTransaccion.header;
-    this.query.where.empresa = this.dataUser.empresa.id;
+    this.table.header = this.idiomas.tables.linkCobro.header;
+    this.query.where.user = this.dataUser.id;
     this.getRow()
   }
 
@@ -55,9 +58,20 @@ export class CobrosComponent implements OnInit {
      }
    }
 
+   openHerramientaCobro( opt:string, item:any ){
+    console.log( item );
+    if( !item ) this.Router.navigate( [ "dashboard/formherramientacobros", opt ] );
+    else {
+      if( item.tipo == 0 ) opt = "email";
+      if( item.tipo == 1 ) opt = "link";
+      if( item.tipo == 2 ) opt = "botton";
+      this.Router.navigate( [ "dashboard/formherramientacobros", opt, item.id ] );
+    }
+  }
+
    getRow(){
     this.spinner.show();
-    this._cobroAutomatico.get( this.query ).subscribe(( res:any )=>{
+    this._linkpago.get( this.query ).subscribe(( res:any )=>{
       console.log( res );
       if (res.data.length === 0 ) this.notEmptyPost =  false;
       this.spinner.hide();

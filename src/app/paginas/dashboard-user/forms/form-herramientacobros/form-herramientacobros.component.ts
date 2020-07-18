@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToolsService } from 'src/app/services/tools.service';
 import { LinkPagoService } from 'src/app/services-components/link-pago.service';
 import { APPINT } from 'src/app/interfaces/interfasapp';
@@ -30,22 +30,33 @@ export class FormHerramientacobrosComponent implements OnInit {
     private _tools: ToolsService,
     private _linkCobro: LinkPagoService,
     private _store: Store<APPINT>,
+    private Router: Router
   ) { 
     this._store.subscribe((store: any) => {
       console.log(store);
       store = store.name;
       if( !store ) return false;
       this.dataUser = store.user || {};
-    });
+    }, error => this.Router.navigate( [ "dashboard/cobros" ] ) );
   }
 
   ngOnInit() {
     this.formatoMoneda = this._tools.formatoMoneda
-    this.opt = (this.activate.snapshot.paramMap.get('opt'));
-    this.data.user = this.dataUser.id;
-    this.data.referenceCodigo = this._tools.codigo();
-    console.log( this.opt );
+    let dataParams:any = ( this.activate.snapshot.paramMap ); dataParams = dataParams.params;
+    this.opt = dataParams.opt;
+    this.id = dataParams.id || null;
+    if( this.id ) this.getCobro();
+    else { this.data.user = this.dataUser.id; this.data.referenceCodigo = this._tools.codigo(); }
   } 
+
+  getCobro(){
+    this._linkCobro.get( { where: { id: this.id }, limit: 1 }).subscribe(( res:any )=>{
+      res = res.data[0];
+      if( !res ) return this.Router.navigate( [ "dashboard/cobros" ] );; 
+      console.log( res );
+      this.data = res;
+    }, error => this.Router.navigate( [ "dashboard/cobros" ] ) );
+  }
 
   submit(){
     let validador:any = this.validando();
@@ -70,14 +81,16 @@ export class FormHerramientacobrosComponent implements OnInit {
       this.disbleBtn = false;
       this._tools.presentToast( "Cobro creado exitoso" );
       this.id = res.id;
+      this.data = res;
     },( error:any ) => { this._tools.presentToast( "Error de servidor"); this.disbleBtn = false; } )
   }
 
   update(){
     console.log( this.data );
+    if( this.data.estado !== 0 ) return this._tools.presentToast("Lo sentimos no podemos actualizar el cobro");
     this.data = _.omitBy( this.data, _.isNull);
     this.data = _.omit(this.data, [ 'createdAt', 'updatedAt', 'user']);
-    this._linkCobro.saved( this.data ).subscribe(( res:any )=>{
+    this._linkCobro.editar( this.data ).subscribe(( res:any )=>{
       this.disbleBtn = false;
       this._tools.presentToast( "Cobro Actualizado exitoso" );
       console.log( res );

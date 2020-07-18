@@ -60,4 +60,8 @@ export class ContenidoComponent implements OnInit {
     this.Router.navigate( [ "dashboard/formherramientacobros", opt ] );
   }
 
+  openCobros(){
+    this.Router.navigate( [ "dashboard/cobros" ] );
+  }
+
 }

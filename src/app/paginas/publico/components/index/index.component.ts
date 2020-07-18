@@ -148,7 +148,8 @@ export class IndexComponent implements OnInit {
       urlRespuesta: result.empresa.urlPagina || "https://dilisaplive.000webhostapp.com/",
       descripcion: this.dataParmas.descripcion,
       id: result.empresa.id,
-      prueba: result.empresa.prueba
+      prueba: result.empresa.prueba,
+      idCobro: this.dataParmas.idCobro
     };
   }
 
@@ -187,7 +188,7 @@ export class IndexComponent implements OnInit {
     this.data.total = this.paramsInforPago.total;
     this.data.referenceCode = this._tools.codigo();
     let validando:boolean = this.validandoData();
-    console.log( validando );
+    // console.log( validando );
     if( !validando ) return false;
     this.vista = "pago";
     let result:any = await this.creandoOrden();
@@ -220,7 +221,8 @@ export class IndexComponent implements OnInit {
         billingCelPhoneNumber: this.data.billingCelPhoneNumber,
         billingEmail: this.data.billingEmail,
         referenceCode: this.data.referenceCode,
-        prueba: this.paramsInforPago.prueba
+        prueba: this.paramsInforPago.prueba,
+        idCobro: this.paramsInforPago.idCobro
       };
       //console.log( data );
       this._cobroAutomatico.saved( data ).subscribe(( res:any )=>{

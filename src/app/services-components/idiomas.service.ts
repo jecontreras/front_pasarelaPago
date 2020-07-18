@@ -81,6 +81,9 @@ export class IdiomasService {
       tables:{
         ultimasTransaccion:{
           header: ['Ref.Pago', 'Ref.Cliente', 'Descripción', 'Medio de Pago', 'Valor', 'Moneda', 'Estado', 'Test']
+        },
+        linkCobro:{
+          header: ['Ref.Pago', 'Tipo de Cobro', 'Descripción', 'Medio de Pago', 'Valor', 'Moneda', 'Estado', 'Test']
         }
       },
     };

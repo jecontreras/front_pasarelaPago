@@ -56,8 +56,8 @@
                                     </a>
                                     <p>{{ idiomas.dashboard.bottonPago }}</p>
                                 </div>
-                                <div class="col-xs-12 col-md-12">
-                                    <a class="mouse">Ver más herramientas</a>
+                                <div class="col-xs-12 col-md-12" (click)="openCobros()">
+                                    <a class="mouse">Ver Todos los cobros</a>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +104,26 @@
                                   <td> <img style="height: 20px;" [src]="row.medioPago || './assets/imagenes/visa.png'"> </td>
                                   <td>{{ row.precio }}</td>
                                   <td>{{ row.moneda || 'Cop' }}</td>
-                                  <td>{{ row.estado }}</td>
+                                  <td>
+                                    <span *ngIf="row.estado == 0">
+                                        Activo
+                                      </span>
+                                      <span *ngIf="row.estado == 1">
+                                        Pagado
+                                      </span>
+                                      <span *ngIf="row.estado == 2">
+                                        Cancelado
+                                      </span>
+                                      <span *ngIf="row.estado == 3">
+                                        Rechazado
+                                      </span>
+                                      <span *ngIf="row.estado == 4">
+                                        Fondos insuficiente
+                                      </span>
+                                      <span *ngIf="row.estado == 5">
+                                        Eliminado
+                                      </span>
+                                  </td>
                                   <td>
                                       <span *ngIf="row.prueba">PRUEBA</span>
                                       <span *ngIf="!row.prueba">PRODUCCIÓN</span>
