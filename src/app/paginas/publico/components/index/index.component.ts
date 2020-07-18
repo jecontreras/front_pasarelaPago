@@ -46,14 +46,14 @@ export class IndexComponent implements OnInit {
   listSeleccionPago:any = {};
   // detalles del pago
   paramsInforPago:any = {
-    subtotal: 2000,
-    taxes: 100,
-    total: 21000,
-    comercio: "JOSE CONTRERAS",
-    llamenos: "+573228576900",
-    escribanos: "JOSEEDUAR147@GMAIL.COM",
-    urlRespuesta: "https://dilisaplive.000webhostapp.com/",
-    descripcion: "Pauete para personas principiantes"
+    // subtotal: 2000,
+    // taxes: 100,
+    // total: 21000,
+    // comercio: "JOSE CONTRERAS",
+    // llamenos: "+573228576900",
+    // escribanos: "JOSEEDUAR147@GMAIL.COM",
+    // urlRespuesta: "https://dilisaplive.000webhostapp.com/",
+    // descripcion: "Pauete para personas principiantes"
     
   };
   //vistas
@@ -145,7 +145,7 @@ export class IndexComponent implements OnInit {
       llamenos: result.celular,
       escribanos: result.email,
       urlRespuesta: result.empresa.urlPagina || "https://dilisaplive.000webhostapp.com/",
-      descripcion: result.empresa.descripcion,
+      descripcion: this.dataParmas.descripcion,
       id: result.empresa.id
     };
   }
