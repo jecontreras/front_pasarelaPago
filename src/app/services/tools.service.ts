@@ -90,7 +90,7 @@ export class ToolsService {
   }
 
   codigo(){
-    return (Date.now().toString(20).substr(2, 3) + Math.random().toString(20).substr(2, 3)).toUpperCase();
+    return (Date.now().toString(20).substr(2, 10) + Math.random().toString(20).substr(2, 3)).toUpperCase();
   }
   
 

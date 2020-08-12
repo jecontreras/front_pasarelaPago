@@ -193,7 +193,11 @@ export class IndexComponent implements OnInit {
     this.vista = "pago";
     let result:any = await this.creandoOrden();
     if( !result ) return this._tools.presentToast("Error con el servidor por favor intentarlo de nuevo");
-    window.open(`http://localhost:8080/zafiro?referenceCode=${ this.data.referenceCode }&purchaseAmount=${ this.data.total }&purchaseIpAddress=192.0.0.1&purchaseQuotaId=001&billingFirstName=${ this.data.billingFirstName }&billingLastName=${ this.data.billingLastName }&billingCity=${ this.data.billingCity }&billingAddress=${ this.data.billingAddress }&billingCelPhoneNumber=${ this.data.billingCelPhoneNumber }&billingPhoneNumber=575758038&billingGender=M&billingEmail=${ this.data.billingEmail }&billingNationality=CO`);
+    let url:string;
+    //url = `https://dilisaplive.000webhostapp.com?referenceCode=${ this.data.referenceCode }&purchaseAmount=${ this.data.total }&purchaseIpAddress=192.0.0.1&purchaseQuotaId=001&billingFirstName=${ this.data.billingFirstName }&billingLastName=${ this.data.billingLastName }&billingCity=${ this.data.billingCity }&billingAddress=${ this.data.billingAddress }&billingCelPhoneNumber=${ this.data.billingCelPhoneNumber }&billingPhoneNumber=575758038&billingGender=M&billingEmail=${ this.data.billingEmail }&billingNationality=CO`;
+    url = `http://localhost:8080/zafiro?referenceCode=${ this.data.referenceCode }&purchaseAmount=${ this.data.total }&purchaseIpAddress=192.0.0.1&purchaseQuotaId=001&billingFirstName=${ this.data.billingFirstName }&billingLastName=${ this.data.billingLastName }&billingCity=${ this.data.billingCity }&billingAddress=${ this.data.billingAddress }&billingCelPhoneNumber=${ this.data.billingCelPhoneNumber }&billingPhoneNumber=575758038&billingGender=M&billingEmail=${ this.data.billingEmail }&billingNationality=CO`;
+    console.log( url );
+    window.open(url);
   }
 
   validandoData(){
